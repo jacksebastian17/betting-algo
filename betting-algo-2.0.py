@@ -7,11 +7,12 @@ import copy
 import pybettor as pb
 import pandas as pd
 import os
+import threading
 
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 37
+BANKROLL = 39
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -21,7 +22,7 @@ class Parser(HTMLParser):
         for a in attrs:
             all_attrs.append(a)
     def handle_data(self, data):
-        global all_data
+        global all_dataW
         all_data.append(data)
 start_tags = []
 all_attrs = []
@@ -57,7 +58,8 @@ def name_converter(team):
     team = team.replace("L.A.", "Los Angeles")
     return team
 
-def bovada_scraper(entry):
+def bovada_scraper(thread, entry):
+    global bovada_games
     driver = webdriver.Chrome(options=options)
     driver.get(entry['link'])
     driver.implicitly_wait(5)
@@ -68,13 +70,12 @@ def bovada_scraper(entry):
         links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
     except:
         print("   Failed on retrieving href links")
-
     parser = Parser()
 
     responses = []
     for link in links:
         driver.get(link)
-        print("Scraping Bovada link:", link)
+        print(thread, "scraping Bovada link:", link)
 
         game = driver.find_element(By.CLASS_NAME, 'h2-heading')
         parser.feed(game.get_attribute('innerHTML'))
@@ -172,13 +173,15 @@ def bovada_scraper(entry):
                     
                     if entry['league'] == 'World Cup':
                         outcomes = []
-                        point = None
+                        point = []
                         if len(spreads_elems[0]) == 2:
-                            point = (float(spreads_elems[0][0]) + float(spreads_elems[0][1])) / 2
+                            point.append(float(spreads_elems[0][0]) + float(spreads_elems[0][1]) / 2)
+                            point.append(float(spreads_elems[2][0]) + float(spreads_elems[2][1]) / 2)
                         else:
-                            point = float(spreads_elems[1][0])
-                        outcomes.append({"name" : team1, "price" : int(spreads_elems[1]), "point" : point})
-                        outcomes.append({"name" : team2, "price" : int(spreads_elems[3]), "point" : point})
+                            point.append(float(spreads_elems[0][0]))
+                            point.append(float(spreads_elems[2][0]))
+                        outcomes.append({"name" : team1, "price" : int(spreads_elems[1]), "point" : point[0]})
+                        outcomes.append({"name" : team2, "price" : int(spreads_elems[3]), "point" : point[1]})
                         spreads["outcomes"] = outcomes
                         markets_json_array.append(spreads)
 
@@ -307,15 +310,17 @@ def bovada_scraper(entry):
         response["markets"] = markets_json_array
         responses.append(response)
     driver.close()
-    return responses
+    bovada_games = responses
 
 
-def pinnacle_scraper(entry):
+def pinnacle_scraper(thread, entry):
+    global pinnacle_games
     driver = webdriver.Chrome(options=options)
     driver.get(entry['link'])
     driver.implicitly_wait(5)
 
     elements = driver.find_elements(By.CLASS_NAME, 'style_btn__1UlxM')
+    #elements = driver.find_elements(By.XPATH, '//*[@id="events-chunkmode"]/div/div/div[2]/div/div[6]/a')
     links = []
     try:
         links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
@@ -327,7 +332,7 @@ def pinnacle_scraper(entry):
     responses = []
     for link in links:
         driver.get(link)
-        print("Scraping Pinnacle link:", link)
+        print(thread, "scraping Pinnacle link:", link)
 
         try:
             # decimal odds -> american odds
@@ -420,7 +425,7 @@ def pinnacle_scraper(entry):
                 h2h["outcomes"] = outcomes
                 markets_json_array.append(h2h)
         except: 
-            print("   Failed on adding point moneyline")
+            print("   Failed on adding moneyline")
             pass
 
         try:
@@ -486,16 +491,23 @@ def pinnacle_scraper(entry):
         responses.append(response)
     
     driver.close()
-    return responses
+    pinnacle_games = responses
 
-
+bovada_games = []
+pinnacle_games = []
 df = pd.DataFrame(columns = ['League', 'Event', 'Market', 'Bet Name', 'Odds', 'Bet Size', 'Exp. Value'])
-f = os.path.abspath(os.getcwd()) + "\live-betting.csv"
 try:
-    os.rename(f, f)
+    os.rename(os.path.abspath(os.getcwd()) + "\live-betting.csv", os.path.abspath(os.getcwd()) + "\live-betting.csv")
     for i in range(len(bovada_sports)):
-        bovada_games = bovada_scraper(bovada_sports[i])
-        pinnacle_games = pinnacle_scraper(pinnacle_sports[i])
+        #bovada_games = bovada_scraper(bovada_sports[i])
+        #pinnacle_games = pinnacle_scraper(pinnacle_sports[i])
+        thread1 = threading.Thread(target=bovada_scraper, args=("Thread 1", bovada_sports[i]))
+        thread2 = threading.Thread(target=pinnacle_scraper, args=("Thread 2", pinnacle_sports[i]))
+        thread1.start()
+        thread2.start()
+        thread1.join()
+        thread2.join()
+
         league = bovada_sports[i]['league']
 
         # calculate no-vig odds from each market in each game on pinnacle and then EV from bovada
@@ -724,7 +736,8 @@ try:
                         'Odds' : final_market['data']['outcomes'][1]['price'],
                         'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
                     }, ignore_index = True)
-
+        bovada_games.clear()
+        pinnacle_games.clear()
     df.drop_duplicates()
     sorted_df = df.sort_values(by=['Exp. Value'], ascending=False)
     sorted_df.to_csv('live-betting.csv', index=False)
