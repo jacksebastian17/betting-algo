@@ -12,7 +12,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 39
+BANKROLL = 32.83
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -123,7 +123,7 @@ def bovada_scraper(thread, entry):
                     all_data[j] = ' +100 '
                 if item == ' (EVEN) ':
                     all_data[j] = ' (+100) '
-
+            
             # main markets
             try:
                 if i == 0:
@@ -190,6 +190,7 @@ def bovada_scraper(thread, entry):
                         outcomes.append({"name" : team2, "price" : int(h2h_elems[1])})
                         outcomes.append({"name" : "Draw", "price" : int(h2h_elems[2])})
                         h2h["outcomes"] = outcomes
+                        print("h2h['outcomes']", h2h["outcomes"])
                         markets_json_array.append(h2h)
 
                         outcomes = []
@@ -319,14 +320,14 @@ def pinnacle_scraper(thread, entry):
     driver.get(entry['link'])
     driver.implicitly_wait(5)
 
-    elements = driver.find_elements(By.CLASS_NAME, 'style_btn__1UlxM')
+    elements = driver.find_elements(By.CLASS_NAME, 'style_btn__Fs5oS')
     #elements = driver.find_elements(By.XPATH, '//*[@id="events-chunkmode"]/div/div/div[2]/div/div[6]/a')
     links = []
     try:
         links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
     except:
         print("   Failed on retrieving href links")
-
+    
     parser = Parser()
 
     responses = []
@@ -345,7 +346,7 @@ def pinnacle_scraper(thread, entry):
             continue
         
         try:
-            game = driver.find_element(By.CLASS_NAME, 'style_desktop_last__2lxp5')
+            game = driver.find_element(By.CLASS_NAME, 'style_desktop_last__2_upx') # <Washington Wizards @ Denver Nuggets>
         except:
             print("   Failed on finding game element")
             continue
@@ -367,7 +368,7 @@ def pinnacle_scraper(thread, entry):
         markets_json_array = []
         # do main markets by not clicking "See more"
         market_offline = False
-        main_markets = driver.find_elements(By.CLASS_NAME, 'style_primary__1bqk9')
+        main_markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
         spreads_elems = []
         h2h_elems = []
         totals_elems = []
@@ -499,8 +500,6 @@ df = pd.DataFrame(columns = ['League', 'Event', 'Market', 'Bet Name', 'Odds', 'B
 try:
     os.rename(os.path.abspath(os.getcwd()) + "\live-betting.csv", os.path.abspath(os.getcwd()) + "\live-betting.csv")
     for i in range(len(bovada_sports)):
-        #bovada_games = bovada_scraper(bovada_sports[i])
-        #pinnacle_games = pinnacle_scraper(pinnacle_sports[i])
         thread1 = threading.Thread(target=bovada_scraper, args=("Thread 1", bovada_sports[i]))
         thread2 = threading.Thread(target=pinnacle_scraper, args=("Thread 2", pinnacle_sports[i]))
         thread1.start()
