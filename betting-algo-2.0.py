@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from html.parser import HTMLParser
-import pprint
 import copy
 import pybettor as pb
 import pandas as pd
@@ -12,7 +11,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 32.83
+BANKROLL = 30.88
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -22,7 +21,7 @@ class Parser(HTMLParser):
         for a in attrs:
             all_attrs.append(a)
     def handle_data(self, data):
-        global all_dataW
+        global all_data
         all_data.append(data)
 start_tags = []
 all_attrs = []
@@ -34,19 +33,19 @@ options.add_argument('--log-level=3')
 
 
 bovada_sports = [
-    {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
-    {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
-    {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
-    {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
-    {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
+    # {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
+    # {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
+    # {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
+    # {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
+    # {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
     {"league" : "World Cup", "link" : 'https://www.bovada.lv/sports/soccer/fifa-world-cup'}
 ]
 pinnacle_sports = [
-    {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
-    {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
-    {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
-    {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
-    {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
+    # {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
+    # {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
+    # {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
+    # {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
+    # {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
     {"league" : "World Cup", "link" : 'https://www.pinnacle.com/en/soccer/fifa-world-cup/matchups#period:0'}
 ]
 
@@ -54,8 +53,17 @@ def split(a, n):
     k, m = divmod(len(a), n)
     return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
 
-def name_converter(team):
+def bovada_name_converter(team):
+    if team[-1] == ' ':
+        team = team.replace(' ', '')
     team = team.replace("L.A.", "Los Angeles")
+    return team
+
+def pinnacle_name_converter(team):
+    if "State" not in team and "St" in team:
+        if team.index("St") + 2 == len(team):
+            team = team.replace("St", "State")
+    team = team.replace("UL - Lafayette", "UL Lafayette")
     return team
 
 def bovada_scraper(thread, entry):
@@ -93,11 +101,10 @@ def bovada_scraper(thread, entry):
             team1 = team1[:team1.index('(') - 1]
         if '(' in team2:
             team2 = team2[:team2.index('(') - 1]
-        team1 = name_converter(team1)
-        team2 = name_converter(team2)
-
+        team1 = bovada_name_converter(team1)
+        team2 = bovada_name_converter(team2)
         response = {"team1" : team1, "team2" : team2}
-
+        #print("bovada:", response)
         all_data.clear()
 
         # get all the betting markets for this game
@@ -190,7 +197,6 @@ def bovada_scraper(thread, entry):
                         outcomes.append({"name" : team2, "price" : int(h2h_elems[1])})
                         outcomes.append({"name" : "Draw", "price" : int(h2h_elems[2])})
                         h2h["outcomes"] = outcomes
-                        print("h2h['outcomes']", h2h["outcomes"])
                         markets_json_array.append(h2h)
 
                         outcomes = []
@@ -353,16 +359,24 @@ def pinnacle_scraper(thread, entry):
         parser.feed(game.get_attribute('innerHTML'))
 
         # get teams playing
-        teams = None
-        if '@' in all_data[0]:
-            teams = all_data[0].split('@')
-        elif 'vs.' in all_data[0]:
-            teams = all_data[0].split("vs.")
-        team1 = teams[0][:-1]
-        team2 = teams[1][1:]
-
+        team1 = None
+        team2 = None
+        try:
+            teams = None
+            if '@' in all_data[0]:
+                teams = all_data[0].split('@')
+            elif 'vs.' in all_data[0]:
+                teams = all_data[0].split("vs.")
+            team1 = teams[0][:-1]
+            team2 = teams[1][1:]
+        except:
+            print("   Failed on extracting teams")
+            continue
+        
+        team1 = pinnacle_name_converter(team1)
+        team2 = pinnacle_name_converter(team2)
         response = {"team1" : team1, "team2" : team2}
-
+        #print("pinnacle:", response)
         all_data.clear()
 
         markets_json_array = []
@@ -441,12 +455,16 @@ def pinnacle_scraper(thread, entry):
 
 
         # alternate markets
-        see_mores = driver.find_elements(By.CLASS_NAME, 'style_toggleMarketsText__yvcsI')
-        for s in see_mores:
-            s.click()
-        markets = driver.find_elements(By.CLASS_NAME, 'style_primary__1bqk9')
-        alternate_spreads_elems = []
-        alternate_totals_elems = []
+        try:
+            see_mores = driver.find_elements(By.CLASS_NAME, 'style_toggleMarketsText__2fAB8')
+            for s in see_mores:
+                s.click()
+            markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
+            alternate_spreads_elems = []
+            alternate_totals_elems = []
+        except:
+            print("   Failed on retrieving markets")
+            pass
 
         for m in markets:
             parser.feed(m.get_attribute('innerHTML'))

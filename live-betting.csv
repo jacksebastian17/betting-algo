@@ -1,9 +1,43 @@
 League,Event,Market,Bet Name,Odds,Bet Size,Exp. Value
-NBA,Washington Wizards vs Denver Nuggets,Moneyline,Washington Wizards,1700,$1.94,100.4237854740329
-NBA,Minnesota Timberwolves vs Los Angeles Clippers,Moneyline,Los Angeles Clippers,-150,$0,-0.3649635036496329
-NBA,New Orleans Pelicans vs Utah Jazz,Point Spreads,New Orleans Pelicans -1.5,-110,$0,-4.5121724586507845
-NBA,New Orleans Pelicans vs Utah Jazz,Point Spreads,Utah Jazz 1.5,-110,$0,-5.4878275413492155
-NBA,Washington Wizards vs Denver Nuggets,Totals,Under 263.5,-115,$0,-5.554885404101351
-NBA,Washington Wizards vs Denver Nuggets,Totals,Over 263.5,-115,$0,-9.44511459589865
-NBA,Minnesota Timberwolves vs Los Angeles Clippers,Moneyline,Minnesota Timberwolves,115,$0,-13.686131386861316
-NBA,Washington Wizards vs Denver Nuggets,Moneyline,Denver Nuggets,-10000,$0,-1024.6001296042955
+World Cup,Argentina vs France,Point Spreads,France 0.0,-105,$0,-3.9291689905186833
+World Cup,Argentina vs France,Totals,Over 2.0,-125,$0,-3.9831720307545493
+World Cup,Croatia vs Morocco,Point Spreads,Morocco 0.25,-115,$0,-4.234639952208072
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco 0.0,125,$0,-4.7104580812445604
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia -0.75,165,$0,-4.838709677419365
+World Cup,Argentina vs France,Moneyline,France,180,$0,-4.848853943218874
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco 0.5,-150,$0,-5.009863274607159
+World Cup,Argentina vs France,Alternate Spreads,France -0.25,136,$0,-5.054521731026143
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco -0.5,205,$0,-5.228464688555223
+World Cup,Argentina vs France,Totals,Under 2.0,105,$0,-5.259776594201412
+World Cup,Argentina vs France,Alternate Spreads,France -0.5,178,$0,-5.35910388754668
+World Cup,Argentina vs France,Alternate Spreads,Argentina -0.5,170,$0,-5.373831775700919
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia -0.5,125,$0,-5.491123052853554
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia -1.0,245,$0,-5.493764281584672
+World Cup,Argentina vs France,Alternate Spreads,Argentina -0.25,128,$0,-5.540975488982422
+World Cup,Croatia vs Morocco,Point Spreads,Croatia -0.25,-105,$0,-5.613482836266721
+World Cup,Argentina vs France,Moneyline,Argentina,170,$0,-5.616201895289715
+World Cup,Argentina vs France,Alternate Spreads,France 0.25,-155,$0,-5.644961624164398
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco -0.25,163,$0,-5.661657779932121
+World Cup,Croatia vs Morocco,Moneyline,Croatia,125,$0,-5.7859866010289895
+World Cup,Croatia vs Morocco,Moneyline,Morocco,205,$0,-5.832364807343538
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia 0.0,-150,$0,-5.877268798617161
+World Cup,Argentina vs France,Alternate Spreads,France -0.75,250,$0,-5.990351554508416
+World Cup,Argentina vs France,Point Spreads,Argentina 0.0,-115,$0,-6.001115448968212
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia -1.25,285,$0,-6.174178171902185
+World Cup,Argentina vs France,Alternate Spreads,Argentina 0.25,-165,$0,-6.612507378296923
+World Cup,Argentina vs France,Alternate Spreads,France 0.75,-290,$0,-7.471745500209318
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia 0.25,-200,$0,-7.610276296655375
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco 0.75,-202,$0,-8.447961046865485
+World Cup,Argentina vs France,Alternate Spreads,Argentina 0.5,-220,$0,-8.939160992752022
+World Cup,Argentina vs France,Alternate Spreads,Argentina -0.75,230,$0,-9.062369192130573
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco -0.75,270,$0,-9.140518417462527
+World Cup,Argentina vs France,Alternate Spreads,France 0.5,-212,$0,-9.345794392523375
+World Cup,Argentina vs France,Alternate Spreads,Argentina 0.75,-310,$0,-10.125588179004426
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia 0.5,-255,$0,-10.307852575616044
+World Cup,Croatia vs Morocco,Alternate Spreads,Croatia 0.75,-350,$0,-10.50477489768071
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco 1.0,-305,$0,-10.942102799878858
+World Cup,Argentina vs France,Alternate Spreads,France -1.0,400,$0,-11.03202846975093
+World Cup,Argentina vs France,Alternate Spreads,Argentina -1.0,380,$0,-12.514851941999577
+World Cup,Argentina vs France,Alternate Spreads,France 1.0,-525,$0,-13.912953200521379
+World Cup,Croatia vs Morocco,Alternate Spreads,Morocco 1.25,-370,$0,-14.540613660275248
+World Cup,Argentina vs France,Alternate Spreads,Argentina 1.0,-575,$0,-20.10676156583624
