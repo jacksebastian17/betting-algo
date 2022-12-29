@@ -11,7 +11,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 34.24
+BANKROLL = 34.50
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -33,22 +33,22 @@ options.add_argument('--log-level=3')
 
 
 bovada_sports = [
+    {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
+    {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
+    {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
+    {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
+    {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
+    {"league" : "Euroleague", "link" : 'https://www.bovada.lv/sports/basketball/euroleague'},
     {"league" : "EPL", "link" : 'https://www.bovada.lv/sports/soccer/europe/england/premier-league'}
-    # {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
-    # {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
-    # {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
-    # {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
-    # {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
-    # {"league" : "Euroleague", "link" : 'https://www.bovada.lv/sports/basketball/euroleague'}
 ]
 pinnacle_sports = [
+    {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
+    {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
+    {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
+    {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
+    {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
+    {"league" : "Euroleague", "link" : 'https://www.pinnacle.com/en/basketball/europe-euroleague/matchups#period:0'},
     {"league" : "EPL", "link" : 'https://www.pinnacle.com/en/soccer/england-premier-league/matchups#period:0'}
-    # {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
-    # {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
-    # {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
-    # {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
-    # {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
-    # {"league" : "Euroleague", "link" : 'https://www.pinnacle.com/en/basketball/europe-euroleague/matchups#period:0'}
 ]
 
 def split(a, n):
@@ -202,8 +202,8 @@ def bovada_scraper(thread, entry):
 
                         outcomes = []
                         outcomes.append({"name" : team1, "price" : int(h2h_elems[0])})
-                        outcomes.append({"name" : team2, "price" : int(h2h_elems[1])})
                         outcomes.append({"name" : "Draw", "price" : int(h2h_elems[2])})
+                        outcomes.append({"name" : team2, "price" : int(h2h_elems[1])})
                         h2h["outcomes"] = outcomes
                         markets_json_array.append(h2h)
 
@@ -734,6 +734,15 @@ try:
                         'Odds' : final_market['data']['outcomes'][1]['price'],
                         'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
+                    if final_market['league'] == "EPL":
+                        df = df.append({'League': final_market['league'],
+                            'Event' : final_market['event'],
+                            'Market' : "Moneyline",
+                            'Bet Name' : str(final_market['data']['outcomes'][2]['name']),
+                            'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][2]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][2]['name']], 2)),
+                            'Odds' : final_market['data']['outcomes'][2]['price'],
+                            'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][2]['name']], 4)
+                        }, ignore_index = True)
                 
                 elif final_market['data']['key'] == 'totals':
                     df = df.append({'League': final_market['league'],
@@ -787,7 +796,7 @@ try:
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][1]['price'],
                         'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
-                    }, ignore_index = True)
+                    }, ignore_index = True)            
         bovada_games.clear()
         pinnacle_games.clear()
     df.drop_duplicates()
