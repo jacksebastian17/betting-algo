@@ -11,7 +11,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 30.88
+BANKROLL = 34.24
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -33,20 +33,22 @@ options.add_argument('--log-level=3')
 
 
 bovada_sports = [
+    {"league" : "EPL", "link" : 'https://www.bovada.lv/sports/soccer/europe/england/premier-league'}
+    # {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
+    # {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
     # {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
     # {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
     # {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
-    # {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
-    # {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
-    {"league" : "World Cup", "link" : 'https://www.bovada.lv/sports/soccer/fifa-world-cup'}
+    # {"league" : "Euroleague", "link" : 'https://www.bovada.lv/sports/basketball/euroleague'}
 ]
 pinnacle_sports = [
+    {"league" : "EPL", "link" : 'https://www.pinnacle.com/en/soccer/england-premier-league/matchups#period:0'}
+    # {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
+    # {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
     # {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
     # {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
     # {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
-    # {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
-    # {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
-    {"league" : "World Cup", "link" : 'https://www.pinnacle.com/en/soccer/fifa-world-cup/matchups#period:0'}
+    # {"league" : "Euroleague", "link" : 'https://www.pinnacle.com/en/basketball/europe-euroleague/matchups#period:0'}
 ]
 
 def split(a, n):
@@ -64,6 +66,13 @@ def pinnacle_name_converter(team):
         if team.index("St") + 2 == len(team):
             team = team.replace("St", "State")
     team = team.replace("UL - Lafayette", "UL Lafayette")
+    #euroleague
+    team = team.replace("Baskonia Vitoria-Gasteiz", "Saski Baskonia")
+    team = team.replace("Real Madrid", "Real Madrid BC")
+    team = team.replace("Anadolu Efes SK", "Anadolu Efes")
+    team = team.replace("Valencia Basket", "Valencia")
+    team = team.replace("KK Partizan Nis Belgrade", "Partizan")
+    team = team.replace("BC Zalgiris Kaunas", "Zalgiris")
     return team
 
 def bovada_scraper(thread, entry):
@@ -104,7 +113,6 @@ def bovada_scraper(thread, entry):
         team1 = bovada_name_converter(team1)
         team2 = bovada_name_converter(team2)
         response = {"team1" : team1, "team2" : team2}
-        #print("bovada:", response)
         all_data.clear()
 
         # get all the betting markets for this game
@@ -139,13 +147,13 @@ def bovada_scraper(thread, entry):
                         bets_index = all_data.index('Bets')
                         first_list = all_data[bets_index + 1:]
                         bets_index = first_list.index('Bets')
-                        if entry['league'] == 'World Cup':
+                        if entry['league'] == 'EPL':
                             main_markets = first_list[bets_index + 1:bets_index + 14]
                         else:
                             main_markets = first_list[bets_index + 1:bets_index + 13]
                     else:
                         bets_index = all_data.index('Bets')
-                        if entry['league'] == 'World Cup':
+                        if entry['league'] == 'EPL':
                             main_markets = first_list[bets_index + 1:bets_index + 14]
                         else:
                             main_markets = all_data[bets_index + 1:bets_index + 13]
@@ -163,7 +171,7 @@ def bovada_scraper(thread, entry):
                     totals_elems = []
 
                     if 'Spread' in all_data and 'Win' in all_data and 'Total' in all_data:
-                        if entry['league'] == 'World Cup':
+                        if entry['league'] == 'EPL':
                             main_markets[0] = main_markets[0].split(',')
                             main_markets[2] = main_markets[2].split(',')
                             main_markets[8] = main_markets[8].split(',')
@@ -178,7 +186,7 @@ def bovada_scraper(thread, entry):
                     elif 'Win' in all_data:
                         h2h_elems = main_markets
                     
-                    if entry['league'] == 'World Cup':
+                    if entry['league'] == 'EPL':
                         outcomes = []
                         point = []
                         if len(spreads_elems[0]) == 2:
@@ -238,7 +246,7 @@ def bovada_scraper(thread, entry):
                     alternate_spread_flag = True
 
                     spreads = all_data[3:]
-                    if entry['league'] == 'World Cup':
+                    if entry['league'] == 'EPL':
                         for i in range(len(spreads)):
                             if len(spreads[i].split(',')) == 1:
                                 continue
@@ -276,7 +284,7 @@ def bovada_scraper(thread, entry):
                     alternate_totals_flag = True
 
                     totals = all_data[3:]
-                    if entry['league'] == 'World Cup':
+                    if entry['league'] == 'EPL':
                         for i in range(len(totals)):
                             if len(totals[i].split(',')) == 1:
                                 continue
@@ -325,8 +333,11 @@ def pinnacle_scraper(thread, entry):
     driver = webdriver.Chrome(options=options)
     driver.get(entry['link'])
     driver.implicitly_wait(5)
-
-    elements = driver.find_elements(By.CLASS_NAME, 'style_btn__Fs5oS')
+    try:
+        elements = driver.find_elements(By.CLASS_NAME, 'style_btn__Fs5oS')
+    except:
+        print("   Failed on retrieving HTML elements")
+        pass
     #elements = driver.find_elements(By.XPATH, '//*[@id="events-chunkmode"]/div/div/div[2]/div/div[6]/a')
     links = []
     try:
@@ -372,17 +383,25 @@ def pinnacle_scraper(thread, entry):
         except:
             print("   Failed on extracting teams")
             continue
-        
-        team1 = pinnacle_name_converter(team1)
-        team2 = pinnacle_name_converter(team2)
+        team1_copy = team1
+        team2_copy = team2
+        if entry['league'] == "Euroleague":
+            team1 = pinnacle_name_converter(team2_copy)
+            team2 = pinnacle_name_converter(team1_copy)
+        else:
+            team1 = pinnacle_name_converter(team1)
+            team2 = pinnacle_name_converter(team2)
         response = {"team1" : team1, "team2" : team2}
-        #print("pinnacle:", response)
         all_data.clear()
 
         markets_json_array = []
         # do main markets by not clicking "See more"
         market_offline = False
-        main_markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
+        try:
+            main_markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
+        except:
+            print("   Failed finding main markets")
+            pass
         spreads_elems = []
         h2h_elems = []
         totals_elems = []
@@ -404,10 +423,13 @@ def pinnacle_scraper(thread, entry):
                     continue
                 all_data.clear()
             except:
+                print("   Failed on deep copying main markets")
+                all_data.clear()
                 pass
         
         if market_offline:
-            break
+            all_data.clear()
+            continue
         
         spreads = {"key" : "spreads"}
         h2h = {"key" : "h2h"}
@@ -416,8 +438,12 @@ def pinnacle_scraper(thread, entry):
 
         try:
             outcomes = []
-            outcomes.append({"name" : team1, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
-            outcomes.append({"name" : team2, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
+            if entry['league'] == "Euroleague":
+                outcomes.append({"name" : team1, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
+                outcomes.append({"name" : team2, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
+            else:
+                outcomes.append({"name" : team1, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
+                outcomes.append({"name" : team2, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
             spreads["outcomes"] = outcomes
             markets_json_array.append(spreads)
         except:
@@ -425,16 +451,21 @@ def pinnacle_scraper(thread, entry):
             pass
 
         try:
-            if entry['league'] == 'World Cup':
-                outcomes = []
+            outcomes = []
+            if entry['league'] == 'EPL':
                 outcomes.append({"name" : team1, "price" : int(h2h_elems[2])})
                 outcomes.append({"name" : "Draw", "price" : int(h2h_elems[4])})
                 outcomes.append({"name" : team2, "price" : int(h2h_elems[6])})
                 h2h["outcomes"] = outcomes
                 markets_json_array.append(h2h)
                 pass
+            elif entry['league'] == 'Euroleague':
+                outcomes.append({"name" : team1, "price" : int(h2h_elems[4])})
+                outcomes.append({"name" : team2, "price" : int(h2h_elems[2])})
+                h2h["outcomes"] = outcomes
+                markets_json_array.append(h2h)
+                pass
             else:
-                outcomes = []
                 outcomes.append({"name" : team1, "price" : int(h2h_elems[2])})
                 outcomes.append({"name" : team2, "price" : int(h2h_elems[4])})
                 h2h["outcomes"] = outcomes
@@ -484,8 +515,12 @@ def pinnacle_scraper(thread, entry):
             for i in range(0, len(alternate_spreads_elems), 4):
                 alternate_spreads_json = {"key" : "alternate_spreads"}
                 outcomes = []
-                outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
-                outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
+                if entry['league'] == "Euroleague":
+                    outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
+                    outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
+                else:
+                    outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
+                    outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
                 alternate_spreads_json["outcomes"] = outcomes
                 markets_json_array.append(alternate_spreads_json)
         except:
@@ -671,7 +706,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][0]['name']) + " " + str(final_market['data']['outcomes'][0]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][0]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']], 4)
                     }, ignore_index = True)
                     df = df.append({'League': final_market['league'],
                         'Event' : final_market['event'],
@@ -679,7 +714,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][1]['name']) + " " + str(final_market['data']['outcomes'][1]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),                    
                         'Odds' : final_market['data']['outcomes'][1]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
                 
                 elif final_market['data']['key'] == 'h2h':
@@ -689,7 +724,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][0]['name']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][0]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']], 4)
                     }, ignore_index = True)
                     df = df.append({'League': final_market['league'],
                         'Event' : final_market['event'],
@@ -697,7 +732,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][1]['name']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][1]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
                 
                 elif final_market['data']['key'] == 'totals':
@@ -707,7 +742,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][0]['name']) + " " + str(final_market['data']['outcomes'][0]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][0]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']], 4)
                     }, ignore_index = True)
                     df = df.append({'League': final_market['league'],
                         'Event' : final_market['event'],
@@ -715,7 +750,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][1]['name']) + " " + str(final_market['data']['outcomes'][1]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][1]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
                 
                 elif final_market['data']['key'] == 'alternate_spreads':
@@ -725,7 +760,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][0]['name']) + " " + str(final_market['data']['outcomes'][0]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][0]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']], 4)
                     }, ignore_index = True)
                     df = df.append({'League': final_market['league'],
                         'Event' : final_market['event'],
@@ -733,7 +768,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][1]['name']) + " " + str(final_market['data']['outcomes'][1]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][1]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
                 
                 elif final_market['data']['key'] == 'alternate_totals':
@@ -743,7 +778,7 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][0]['name']) + " " + str(final_market['data']['outcomes'][0]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][0]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][0]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][0]['name']], 4)
                     }, ignore_index = True)
                     df = df.append({'League': final_market['league'],
                         'Event' : final_market['event'],
@@ -751,14 +786,14 @@ try:
                         'Bet Name' : str(final_market['data']['outcomes'][1]['name']) + " " + str(final_market['data']['outcomes'][1]['point']),
                         'Bet Size': "$0" if final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']] < 0 else "$" + str(round(BANKROLL * final_market['data']['kelly'][final_market['data']['outcomes'][1]['name']], 2)),
                         'Odds' : final_market['data']['outcomes'][1]['price'],
-                        'Exp. Value' : final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']]
+                        'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
         bovada_games.clear()
         pinnacle_games.clear()
     df.drop_duplicates()
     sorted_df = df.sort_values(by=['Exp. Value'], ascending=False)
     sorted_df.to_csv('live-betting.csv', index=False)
-    print(sorted_df.head(12))
+    print(sorted_df.head(15))
 except OSError as e:
     print('You have live-betting.csv open idiot')
     quit()
