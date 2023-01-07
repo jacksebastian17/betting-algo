@@ -11,7 +11,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 34.50
+BANKROLL = 64.69
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -34,12 +34,16 @@ options.add_argument('--log-level=3')
 
 bovada_sports = [
     {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
-    {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football/ncaaf'},
+    {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football'},
     {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
     {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
     {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
+    {"league" : "ATP", "link" : 'https://www.bovada.lv/sports/tennis/atp/auckland'},
     {"league" : "Euroleague", "link" : 'https://www.bovada.lv/sports/basketball/euroleague'},
-    {"league" : "EPL", "link" : 'https://www.bovada.lv/sports/soccer/europe/england/premier-league'}
+    {"league" : "CBA", "link" : 'https://www.bovada.lv/sports/basketball/asia/china/cba'},
+    {"league" : "EPL", "link" : 'https://www.bovada.lv/sports/soccer/europe/england/premier-league'},
+    {"league" : "LCK", "link" : 'https://www.bovada.lv/sports/esports/league-of-legends/lck-spring'},
+    {"league" : "DPC CN D1", "link" : 'https://www.bovada.lv/sports/esports/dota-2/dota-pro-circuit-division-i/dpc-cn-division-i'}
 ]
 pinnacle_sports = [
     {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
@@ -47,8 +51,12 @@ pinnacle_sports = [
     {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
     {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
     {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
+    {"league" : "ATP", "link" : 'https://www.pinnacle.com/en/tennis/atp-auckland-qualifiers/matchups#period:0'},
     {"league" : "Euroleague", "link" : 'https://www.pinnacle.com/en/basketball/europe-euroleague/matchups#period:0'},
-    {"league" : "EPL", "link" : 'https://www.pinnacle.com/en/soccer/england-premier-league/matchups#period:0'}
+    {"league" : "CBA", "link" : 'https://www.pinnacle.com/en/basketball/china-cba/matchups#period:0'},
+    {"league" : "EPL", "link" : 'https://www.pinnacle.com/en/soccer/england-premier-league/matchups#period:0'},
+    {"league" : "LCK", "link" : 'https://www.pinnacle.com/en/esports/games/league-of-legends/lck/matchups#period:0'},
+    {"league" : "DPC CN D1", "link" : 'https://www.pinnacle.com/en/esports/games/dota-2/dota-pro-circuit-china-division-i/matchups#period:0'}
 ]
 
 def split(a, n):
@@ -66,13 +74,29 @@ def pinnacle_name_converter(team):
         if team.index("St") + 2 == len(team):
             team = team.replace("St", "State")
     team = team.replace("UL - Lafayette", "UL Lafayette")
-    #euroleague
+
+    # euroleague
     team = team.replace("Baskonia Vitoria-Gasteiz", "Saski Baskonia")
     team = team.replace("Real Madrid", "Real Madrid BC")
     team = team.replace("Anadolu Efes SK", "Anadolu Efes")
     team = team.replace("Valencia Basket", "Valencia")
     team = team.replace("KK Partizan Nis Belgrade", "Partizan")
     team = team.replace("BC Zalgiris Kaunas", "Zalgiris")
+    team = team.replace("Fenerbahce Istanbul", "Fenerbahce")
+    team = team.replace("Baskonia Vitoria-Gasteiz", "Saski Baskonia")
+    team = team.replace("Panathinaikos BC", "Panathinaikos")
+    team = team.replace("FC Barcelona", "Barcelona")
+
+    # lck
+    team = team.replace("DWG KIA", "DAMWON")
+    team = team.replace("Hanwha Life", "Hanwha Life Esports")
+    team = team.replace("RedForce", "Red Force")
+
+    # dota
+    if "Aster" in team and ".Aries" not in team:
+        team = team.replace("Aster", "Team Aster")
+    team = team.replace("Knights", "Pittsburgh Knights")
+
     return team
 
 def bovada_scraper(thread, entry):
@@ -94,7 +118,11 @@ def bovada_scraper(thread, entry):
         driver.get(link)
         print(thread, "scraping Bovada link:", link)
 
-        game = driver.find_element(By.CLASS_NAME, 'h2-heading')
+        try:
+            game = driver.find_element(By.CLASS_NAME, 'h2-heading')
+        except:
+            print("   Failed on game by finding h2-headinng")
+            continue
         parser.feed(game.get_attribute('innerHTML'))
 
         # get teams playing
@@ -190,8 +218,8 @@ def bovada_scraper(thread, entry):
                         outcomes = []
                         point = []
                         if len(spreads_elems[0]) == 2:
-                            point.append(float(spreads_elems[0][0]) + float(spreads_elems[0][1]) / 2)
-                            point.append(float(spreads_elems[2][0]) + float(spreads_elems[2][1]) / 2)
+                            point.append((float(spreads_elems[0][0]) + float(spreads_elems[0][1])) / 2)
+                            point.append((float(spreads_elems[2][0]) + float(spreads_elems[2][1])) / 2)
                         else:
                             point.append(float(spreads_elems[0][0]))
                             point.append(float(spreads_elems[2][0]))
@@ -242,7 +270,7 @@ def bovada_scraper(thread, entry):
 
             # alternate spreads
             try:
-                if all_data[0] == " Spread " and "\xa0-\xa0First Half" not in all_data and "\xa0- Regulation Time" not in all_data and alternate_spread_flag == False:
+                if (all_data[0] == " Spread " or all_data[0] == " Alternate Game Spread " or all_data[0] == " Asian - Handicap ") and "\xa0-\xa0First Half" not in all_data and "\xa0- Regulation Time" not in all_data and alternate_spread_flag == False:
                     alternate_spread_flag = True
 
                     spreads = all_data[3:]
@@ -280,7 +308,7 @@ def bovada_scraper(thread, entry):
             
             # alternate totals
             try:
-                if (all_data[0] == " Total Points " or all_data[0] == " Total Goals O/U ") and "\xa0-\xa0First Half" and not "\xa0-\xa0Live First Half" in all_data and alternate_totals_flag == False:
+                if (all_data[0] == " Total Points " or all_data[0] == " Alternate Total Games " or all_data[0] == " Total Goals O/U ") and "\xa0-\xa0First Half" and not "\xa0-\xa0Live First Half" in all_data and alternate_totals_flag == False:
                     alternate_totals_flag = True
 
                     totals = all_data[3:]
@@ -341,7 +369,10 @@ def pinnacle_scraper(thread, entry):
     #elements = driver.find_elements(By.XPATH, '//*[@id="events-chunkmode"]/div/div/div[2]/div/div[6]/a')
     links = []
     try:
-        links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
+        if entry['league'] == 'ATP':
+            links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None and 'games' in i]
+        else:
+            links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
     except:
         print("   Failed on retrieving href links")
     
@@ -385,12 +416,17 @@ def pinnacle_scraper(thread, entry):
             continue
         team1_copy = team1
         team2_copy = team2
-        if entry['league'] == "Euroleague":
+        flipped_teams = False
+        if entry['league'] == "Euroleague" or entry['league'] == "CBA" or entry['league'] == "Weibo":
+            flipped_teams = True
             team1 = pinnacle_name_converter(team2_copy)
             team2 = pinnacle_name_converter(team1_copy)
         else:
             team1 = pinnacle_name_converter(team1)
             team2 = pinnacle_name_converter(team2)
+        if entry['league'] == 'ATP':
+            team1 = team1[:-8]
+            team2 = team2[:-8]
         response = {"team1" : team1, "team2" : team2}
         all_data.clear()
 
@@ -409,14 +445,14 @@ def pinnacle_scraper(thread, entry):
         for m in main_markets:
             try:
                 parser.feed(m.get_attribute('innerHTML'))
-                if 'Market Offline' in all_data:
+                if 'Market Offline' in all_data and entry['league'] != 'ATP':
                     market_offline = True
                     break
-                if all_data[0] == 'Money Line – Game' or all_data[0] == 'Money Line – OT Included' or all_data[0] == 'Money Line – Match':
+                if all_data[0] == 'Money Line – Game' or all_data[0] == 'Money Line – OT Included' or all_data[0] == 'Money Line – Match' or all_data[0] == 'Money Line (Sets) – Match':
                     h2h_elems = copy.deepcopy(all_data)
-                elif all_data[0] == 'Handicap – Game' or all_data[0] == 'Handicap – OT Included' or all_data[0] == 'Handicap – Match':
+                elif all_data[0] == 'Handicap – Game' or all_data[0] == 'Handicap – OT Included' or all_data[0] == 'Handicap – Match' or all_data[0] == 'Handicap (Games) – Match':
                     spreads_elems = copy.deepcopy(all_data)
-                elif all_data[0] == 'Total – Game' or all_data[0] == 'Total – OT Included' or all_data[0] == 'Total – Match':
+                elif all_data[0] == 'Total – Game' or all_data[0] == 'Total – OT Included' or all_data[0] == 'Total – Match' or all_data[0] == 'Total (Games) – Match':
                     totals_elems = copy.deepcopy(all_data)
                 else:
                     all_data.clear()
@@ -426,26 +462,33 @@ def pinnacle_scraper(thread, entry):
                 print("   Failed on deep copying main markets")
                 all_data.clear()
                 pass
-        
-        if market_offline:
+        if market_offline and entry['league'] != 'ATP':
             all_data.clear()
             continue
-        
+
         spreads = {"key" : "spreads"}
         h2h = {"key" : "h2h"}
         totals = {"key" : "totals"}
 
-
         try:
-            outcomes = []
-            if entry['league'] == "Euroleague":
-                outcomes.append({"name" : team1, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
-                outcomes.append({"name" : team2, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
+            if entry['league'] == 'ATP':
+                for i in range(3, len(spreads_elems), 4):
+                    outcomes = []
+                    alternate_spreads_json = {"key" : "alternate_spreads"}
+                    outcomes.append({"name" : team1, "price" : int(spreads_elems[i + 1]), "point" : float(spreads_elems[i])})
+                    outcomes.append({"name" : team2, "price" : int(spreads_elems[i + 3]), "point" : float(spreads_elems[i + 2])})
+                    alternate_spreads_json["outcomes"] = outcomes
+                    markets_json_array.append(alternate_spreads_json)
             else:
-                outcomes.append({"name" : team1, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
-                outcomes.append({"name" : team2, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
-            spreads["outcomes"] = outcomes
-            markets_json_array.append(spreads)
+                outcomes = []
+                if flipped_teams:
+                    outcomes.append({"name" : team1, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
+                    outcomes.append({"name" : team2, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
+                else:
+                    outcomes.append({"name" : team1, "price" : int(spreads_elems[4]), "point" : float(spreads_elems[3])})
+                    outcomes.append({"name" : team2, "price" : int(spreads_elems[6]), "point" : float(spreads_elems[5])})
+                spreads["outcomes"] = outcomes
+                markets_json_array.append(spreads)
         except:
             print("   Failed on adding spreads")
             pass
@@ -459,7 +502,7 @@ def pinnacle_scraper(thread, entry):
                 h2h["outcomes"] = outcomes
                 markets_json_array.append(h2h)
                 pass
-            elif entry['league'] == 'Euroleague':
+            elif flipped_teams:
                 outcomes.append({"name" : team1, "price" : int(h2h_elems[4])})
                 outcomes.append({"name" : team2, "price" : int(h2h_elems[2])})
                 h2h["outcomes"] = outcomes
@@ -475,70 +518,82 @@ def pinnacle_scraper(thread, entry):
             pass
 
         try:
-            outcomes = []
-            outcomes.append({"name" : "Over", "price" : int(totals_elems[2]), "point" : float(totals_elems[1][5:])})
-            outcomes.append({"name" : "Under", "price" : int(totals_elems[4]), "point" : float(totals_elems[1][5:])})
-            totals["outcomes"] = outcomes
-            markets_json_array.append(totals)
+            if entry['league'] == 'ATP':
+                for i in range(1, len(totals_elems), 4):
+                    outcomes = []
+                    alternate_totals_json = {"key" : "alternate_totals"}
+                    point = totals_elems[i].replace('Over ', '')
+                    point = point.replace('Under ', '')
+                    point = point.replace(' Games', '')
+                    outcomes.append({"name" : "Over", "price" : int(totals_elems[i + 1]), "point" : float(point)})
+                    outcomes.append({"name" : "Under", "price" : int(totals_elems[i + 3]), "point" : float(point)})
+                    alternate_totals_json["outcomes"] = outcomes
+                    markets_json_array.append(alternate_totals_json)
+            else:
+                outcomes = []
+                outcomes.append({"name" : "Over", "price" : int(totals_elems[2]), "point" : float(totals_elems[1][5:])})
+                outcomes.append({"name" : "Under", "price" : int(totals_elems[4]), "point" : float(totals_elems[1][5:])})
+                totals["outcomes"] = outcomes
+                markets_json_array.append(totals)
         except:
             print("   Failed on adding totals ")
             pass
 
+        if entry['league'] != 'ATP':
+            # alternate markets
+            try:
+                see_mores = driver.find_elements(By.CLASS_NAME, 'style_toggleMarketsText__2fAB8')
+                for s in see_mores:
+                    s.click()
+                markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
+                alternate_spreads_elems = []
+                alternate_totals_elems = []
+            except:
+                print("   Failed on retrieving markets")
+                pass
 
-        # alternate markets
-        try:
-            see_mores = driver.find_elements(By.CLASS_NAME, 'style_toggleMarketsText__2fAB8')
-            for s in see_mores:
-                s.click()
-            markets = driver.find_elements(By.CLASS_NAME, 'style_primary__3IwKt')
-            alternate_spreads_elems = []
-            alternate_totals_elems = []
-        except:
-            print("   Failed on retrieving markets")
-            pass
-
-        for m in markets:
-            parser.feed(m.get_attribute('innerHTML'))
-            if all_data[0] == 'Handicap – Game' or all_data[0] == 'Handicap – OT Included' or all_data[0] == 'Handicap – Match':
-                alternate_spreads_elems = copy.deepcopy(all_data)
-            elif all_data[0] == 'Total – Game' or all_data[0] == 'Total – OT Included' or all_data[0] == 'Total – Game':
-                alternate_totals_elems = copy.deepcopy(all_data)
-            else:
-                all_data.clear()
-                continue
-            all_data.clear()
-
-        alternate_spreads_elems = alternate_spreads_elems[3:-1]
-        alternate_totals_elems = alternate_totals_elems[1:-1]
-
-        try:
-            for i in range(0, len(alternate_spreads_elems), 4):
-                alternate_spreads_json = {"key" : "alternate_spreads"}
-                outcomes = []
-                if entry['league'] == "Euroleague":
-                    outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
-                    outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
+            for m in markets:
+                parser.feed(m.get_attribute('innerHTML'))
+                if all_data[0] == 'Handicap – Game' or all_data[0] == 'Handicap – OT Included' or all_data[0] == 'Handicap – Match':
+                    alternate_spreads_elems = copy.deepcopy(all_data)
+                elif all_data[0] == 'Total – Game' or all_data[0] == 'Total – OT Included' or all_data[0] == 'Total – Game':
+                    alternate_totals_elems = copy.deepcopy(all_data)
                 else:
-                    outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
-                    outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
-                alternate_spreads_json["outcomes"] = outcomes
-                markets_json_array.append(alternate_spreads_json)
-        except:
-            print("   Failed on adding alternate spreads market")
-            pass
-        
-        try:
-            for i in range(0, len(alternate_totals_elems), 4):
-                alternate_totals_json = {"key" : "alternate_totals"}
-                outcomes = []
-                point = alternate_totals_elems[i][5:]
-                outcomes.append({"name" : "Over", "price" : int(alternate_totals_elems[i + 1]), "point" : float(point)})
-                outcomes.append({"name" : "Under", "price" : int(alternate_totals_elems[i + 3]), "point" : float(point)})
-                alternate_totals_json["outcomes"] = outcomes
-                markets_json_array.append(alternate_totals_json)
-        except:
-            print("   Failed on adding alternate total market")
-            pass
+                    all_data.clear()
+                    continue
+                all_data.clear()
+
+            alternate_spreads_elems = alternate_spreads_elems[3:-1]
+            alternate_totals_elems = alternate_totals_elems[1:-1]
+
+            try:
+                for i in range(0, len(alternate_spreads_elems), 4):
+                    alternate_spreads_json = {"key" : "alternate_spreads"}
+                    outcomes = []
+                    if flipped_teams:
+                        outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
+                        outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
+                    else:
+                        outcomes.append({"name" : team1, "price" : int(alternate_spreads_elems[i + 1]), "point" : float(alternate_spreads_elems[i])})
+                        outcomes.append({"name" : team2, "price" : int(alternate_spreads_elems[i + 3]), "point" : float(alternate_spreads_elems[i + 2])})
+                    alternate_spreads_json["outcomes"] = outcomes
+                    markets_json_array.append(alternate_spreads_json)
+            except:
+                print("   Failed on adding alternate spreads market")
+                pass
+            
+            try:
+                for i in range(0, len(alternate_totals_elems), 4):
+                    alternate_totals_json = {"key" : "alternate_totals"}
+                    outcomes = []
+                    point = alternate_totals_elems[i][5:]
+                    outcomes.append({"name" : "Over", "price" : int(alternate_totals_elems[i + 1]), "point" : float(point)})
+                    outcomes.append({"name" : "Under", "price" : int(alternate_totals_elems[i + 3]), "point" : float(point)})
+                    alternate_totals_json["outcomes"] = outcomes
+                    markets_json_array.append(alternate_totals_json)
+            except:
+                print("   Failed on adding alternate total market")
+                pass
 
         all_data.clear()
         response["markets"] = markets_json_array
