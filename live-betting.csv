@@ -1,21 +1,386 @@
 League,Event,Market,Bet Name,Odds,Bet Size,Exp. Value
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Spreads,Jiri Lehecka -4.0,110,$0,-3.6506
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Spreads,Jiri Lehecka -3.0,-145,$0,-4.5222
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Totals,Over 23.5,-105,$0,-4.721
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Moneyline,Joao Sousa,150,$0,-4.9176
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Spreads,Christopher Eubanks -2.5,-105,$0,-5.1665
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Totals,Over 22.5,110,$0,-5.4776
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Totals,Over 24.0,-105,$0,-5.6127
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Spreads,Joao Sousa 1.5,110,$0,-6.684
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Moneyline,Facundo Bagnis,200,$0,-7.0291
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Totals,Under 21.5,-105,$0,-7.149
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Totals,Over 21.5,-125,$0,-7.3974
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Spreads,Christopher Eubanks -1.5,-145,$0,-8.8686
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Totals,Under 24.0,-125,$0,-9.0837
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Spreads,Joao Sousa 2.5,-125,$0,-9.5734
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Alternate Totals,Under 23.5,-125,$0,-10.0623
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Totals,Under 22.5,-145,$0,-10.2762
-ATP Auckland,Christopher Eubanks vs Joao Sousa,Moneyline,Christopher Eubanks,-190,$0,-10.2956
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Spreads,Facundo Bagnis 3.0,110,$0,-10.4096
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Alternate Spreads,Facundo Bagnis 4.0,-145,$0,-12.4076
-ATP Auckland,Jiri Lehecka vs Facundo Bagnis,Moneyline,Jiri Lehecka,-275,$0,-16.2137
+La Liga,Almería vs Espanyol,Moneyline,Draw,200,$1.44,2.4702
+La Liga,Getafe vs Real Betis,Moneyline,Draw,210,$0.82,1.4843
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano 0.0,130,$0.58,0.6527
+La Liga,Rayo Vallecano vs Real Sociedad,Point Spreads,Rayo Vallecano 0.25,-115,$0.61,0.4963
+La Liga,Atlético Madrid vs Real Valladolid,Moneyline,Draw,400,$0.08,0.2802
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano 0.75,-215,$1.01,0.1609
+La Liga,Rayo Vallecano vs Real Sociedad,Moneyline,Rayo Vallecano,225,$0,-0.5403
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano 0.5,-157,$0,-0.7694
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna 0.0,-177,$0,-0.8666
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia -0.5,134,$0,-0.8757
+La Liga,Villarreal vs Rayo Vallecano,Totals,Over 2.5,-105,$0,-1.1683
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano 1.0,-360,$0,-1.2543
+La Liga,Real Valladolid vs Valencia,Point Spreads,Valencia -0.25,100,$0,-1.3174
+La Liga,Real Valladolid vs Valencia,Moneyline,Valencia,135,$0,-1.3462
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano -0.25,173,$0,-1.4072
+La Liga,Girona vs FC Barcelona,Moneyline,Girona,475,$0,-1.5404
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano -0.5,220,$0,-1.5976
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería 0.25,-195,$0,-1.6659
+La Liga,Elche vs Osasuna,Moneyline,Osasuna,120,$0,-1.6956
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -0.5,-130,$0,-1.7023
+La Liga,Rayo Vallecano vs Real Sociedad,Moneyline,Draw,225,$0,-1.7682
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -0.5,-188,$0,-1.8016
+La Liga,Elche vs Osasuna,Point Spreads,Osasuna -0.25,-115,$0,-1.8153
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia 0.0,-150,$0,-1.8896
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería 0.0,-136,$0,-1.9323
+La Liga,Sevilla vs Cádiz,Totals,Under 2.25,-102,$0,-1.9386
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna -0.5,118,$0,-2.0894
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia -0.75,178,$0,-2.1613
+La Liga,Villarreal vs Girona,Moneyline,Draw,300,$0,-2.1879
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -0.5,-138,$0,-2.2297
+La Liga,Sevilla vs Cádiz,Moneyline,Draw,280,$0,-2.3705
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 1.5,-132,$0,-2.4031
+La Liga,Atlético Madrid vs Real Valladolid,Point Spreads,Real Valladolid 1.25,-102,$0,-2.4288
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna -0.75,160,$0,-2.4298
+La Liga,Espanyol vs Real Betis,Moneyline,Draw,215,$0,-2.4552
+La Liga,Sevilla vs Cádiz,Point Spreads,Sevilla -0.75,-108,$0,-2.5288
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -0.5,-125,$0,-2.599
+La Liga,Real Valladolid vs Valencia,Totals,Over 2.25,-115,$0,-2.6242
+La Liga,Valencia vs Almería,Moneyline,Draw,320,$0,-2.7009
+La Liga,Girona vs FC Barcelona,Totals,Over 2.75,-110,$0,-2.7248
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna 0.25,-240,$0,-2.7261
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia -1.25,320,$0,-2.7348
+La Liga,Villarreal vs Rayo Vallecano,Point Spreads,Villarreal -0.75,102,$0,-2.7542
+La Liga,Mallorca vs Celta de Vigo,Moneyline,Draw,195,$0,-2.7796
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 0.75,110,$0,-2.8104
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia -1.0,270,$0,-2.8448
+La Liga,Almería vs Espanyol,Totals,Over 2.25,-118,$0,-2.9169
+La Liga,Cádiz vs Mallorca,Moneyline,Mallorca,180,$0,-2.9723
+La Liga,Espanyol vs Real Betis,Totals,Under 2.25,-110,$0,-3.0473
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca -0.5,178,$0,-3.1412
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -1.0,130,$0,-3.2357
+La Liga,Osasuna vs Atlético Madrid,Moneyline,Draw,225,$0,-3.2995
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -1.0,143,$0,-3.3563
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano -0.75,310,$0,-3.4731
+La Liga,Villarreal vs Rayo Vallecano,Moneyline,Draw,280,$0,-3.4932
+La Liga,Mallorca vs Celta de Vigo,Point Spreads,Mallorca 0.0,-108,$0,-3.5098
+La Liga,Getafe vs Real Betis,Totals,Over 2.0,-118,$0,-3.5829
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 1.0,138,$0,-3.5888
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca -0.25,134,$0,-3.6122
+La Liga,Cádiz vs Mallorca,Point Spreads,Mallorca 0.0,-110,$0,-3.6167
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna -1.0,245,$0,-3.6521
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 1.25,-138,$0,-3.653
+La Liga,Osasuna vs Atlético Madrid,Point Spreads,Atlético Madrid -0.25,-102,$0,-3.6643
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid -0.5,132,$0,-3.6756
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 1.75,-177,$0,-3.7006
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 1.5,-175,$0,-3.7138
+La Liga,Sevilla vs Cádiz,Moneyline,Sevilla,-140,$0,-3.7273
+La Liga,Cádiz vs Mallorca,Moneyline,Draw,205,$0,-3.7583
+La Liga,Villarreal vs Rayo Vallecano,Moneyline,Villarreal,-125,$0,-3.8041
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 2.5,-177,$0,-3.8117
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla 0.0,-340,$0,-3.8281
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -0.25,-200,$0,-3.8311
+La Liga,Elche vs Osasuna,Moneyline,Draw,225,$0,-3.9163
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería 0.5,-260,$0,-3.9451
+La Liga,Villarreal vs Girona,Point Spreads,Villarreal -0.75,-105,$0,-3.95
+La Liga,Espanyol vs Real Betis,Point Spreads,Espanyol 0.0,-108,$0,-4.0
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca -0.75,250,$0,-4.0498
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca -0.5,183,$0,-4.0993
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -0.25,-185,$0,-4.1502
+La Liga,Osasuna vs Atlético Madrid,Totals,Over 2.25,102,$0,-4.2043
+La Liga,Almería vs Espanyol,Point Spreads,Almería -0.25,112,$0,-4.2464
+La Liga,Rayo Vallecano vs Real Sociedad,Totals,Under 2.0,102,$0,-4.2968
+La Liga,Elche vs Osasuna,Totals,Over 2.25,102,$0,-4.2968
+La Liga,Sevilla vs Elche,Point Spreads,Elche 1.0,-102,$0,-4.3102
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 1.25,-162,$0,-4.3283
+La Liga,Getafe vs Real Betis,Point Spreads,Real Betis 0.0,-132,$0,-4.3345
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca 0.25,-160,$0,-4.3364
+La Liga,FC Barcelona vs Getafe,Point Spreads,FC Barcelona -2.0,-105,$0,-4.4062
+La Liga,Atlético Madrid vs Real Valladolid,Totals,Under 2.5,-105,$0,-4.4062
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -1.5,205,$0,-4.416
+La Liga,Valencia vs Almería,Moneyline,Almería,440,$0,-4.4163
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe 0.25,-136,$0,-4.4248
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 2.0,-260,$0,-4.4376
+La Liga,Cádiz vs Mallorca,Totals,Over 2.0,-108,$0,-4.4502
+La Liga,Sevilla vs Elche,Moneyline,Draw,340,$0,-4.4611
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -0.5,-180,$0,-4.4669
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -2.25,125,$0,-4.471
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca 0.25,-162,$0,-4.4785
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis 0.25,-188,$0,-4.49
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca -0.25,136,$0,-4.5407
+La Liga,Villarreal vs Girona,Moneyline,Villarreal,-135,$0,-4.5455
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -1.25,178,$0,-4.5971
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -1.25,115,$0,-4.6211
+La Liga,Sevilla vs Elche,Totals,Over 2.5,-112,$0,-4.6228
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 1.25,-200,$0,-4.6512
+La Liga,Girona vs FC Barcelona,Point Spreads,FC Barcelona -1.0,-115,$0,-4.6642
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Rayo Vallecano 1.25,-440,$0,-4.6727
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -1.75,-138,$0,-4.6817
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -1.75,190,$0,-4.6834
+La Liga,Valencia vs Almería,Totals,Over 2.5,-120,$0,-4.7157
+La Liga,Villarreal vs Girona,Totals,Under 2.75,-120,$0,-4.7157
+La Liga,Villarreal vs Girona,Totals,Over 2.75,100,$0,-4.8039
+La Liga,Valencia vs Almería,Totals,Under 2.5,100,$0,-4.8039
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -0.25,-177,$0,-4.8468
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -0.75,-157,$0,-4.8866
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid 0.0,-155,$0,-4.8903
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -1.5,-170,$0,-4.8921
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 2.25,-310,$0,-4.9135
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 1.5,-200,$0,-4.9145
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -1.5,143,$0,-4.9274
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 0.75,125,$0,-4.9317
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 1.0,-157,$0,-4.9384
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna 0.5,-305,$0,-4.9423
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -1.25,165,$0,-4.9666
+La Liga,Almería vs Espanyol,Moneyline,Almería,155,$0,-5.075
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol 0.25,-157,$0,-5.098
+La Liga,Getafe vs Real Betis,Point Spreads,Getafe 0.0,111,$0,-5.1096
+La Liga,Elche vs Osasuna,Totals,Under 2.25,-122,$0,-5.1788
+La Liga,Rayo Vallecano vs Real Sociedad,Totals,Over 2.0,-122,$0,-5.1788
+La Liga,Osasuna vs Atlético Madrid,Moneyline,Atlético Madrid,130,$0,-5.1993
+La Liga,Girona vs FC Barcelona,Point Spreads,Girona 1.0,-105,$0,-5.2039
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna -1.25,290,$0,-5.2258
+La Liga,Espanyol vs Real Betis,Moneyline,Espanyol,175,$0,-5.2465
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol -0.25,132,$0,-5.2696
+La Liga,Osasuna vs Atlético Madrid,Totals,Under 2.25,-122,$0,-5.2804
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis -0.5,155,$0,-5.3054
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid -0.75,178,$0,-5.307
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 0.25,188,$0,-5.3216
+La Liga,Sevilla vs Elche,Totals,Under 2.5,-108,$0,-5.3512
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería -0.5,152,$0,-5.4103
+La Liga,Sevilla vs Elche,Point Spreads,Sevilla -1.0,-118,$0,-5.4276
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 1.5,-245,$0,-5.4585
+La Liga,Mallorca vs Celta de Vigo,Moneyline,Mallorca,180,$0,-5.4956
+La Liga,FC Barcelona vs Getafe,Point Spreads,Getafe 2.0,-115,$0,-5.5008
+La Liga,Atlético Madrid vs Real Valladolid,Totals,Over 2.5,-115,$0,-5.5008
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -1.5,212,$0,-5.5309
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 0.25,212,$0,-5.5309
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería 0.75,-370,$0,-5.5383
+La Liga,Cádiz vs Mallorca,Totals,Under 2.0,-112,$0,-5.5411
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -0.5,-160,$0,-5.5838
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia 0.25,-210,$0,-5.5929
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 1.75,-240,$0,-5.6117
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 0.75,173,$0,-5.6137
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -0.75,-150,$0,-5.6315
+La Liga,Osasuna vs Atlético Madrid,Moneyline,Osasuna,225,$0,-5.658
+La Liga,Almería vs Espanyol,Point Spreads,Espanyol 0.25,-134,$0,-5.6902
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca 0.75,-310,$0,-5.7042
+La Liga,Girona vs FC Barcelona,Moneyline,Draw,350,$0,-5.7265
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis -0.25,113,$0,-5.7522
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 0.5,132,$0,-5.7868
+La Liga,Getafe vs Real Betis,Moneyline,Real Betis,155,$0,-5.8434
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -2.0,275,$0,-5.8644
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 1.75,114,$0,-5.8745
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 0.0,335,$0,-5.8974
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol 0.5,-206,$0,-5.9078
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis -0.25,130,$0,-5.9434
+La Liga,Villarreal vs Girona,Point Spreads,Girona 0.75,-115,$0,-5.9793
+La Liga,Espanyol vs Real Betis,Point Spreads,Real Betis 0.0,-112,$0,-6.0
+La Liga,Getafe vs Real Betis,Totals,Under 2.0,-102,$0,-6.0195
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -1.0,130,$0,-6.0862
+La Liga,Osasuna vs Atlético Madrid,Point Spreads,Osasuna 0.25,-118,$0,-6.1246
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 0.75,130,$0,-6.1326
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 2.25,-150,$0,-6.1433
+La Liga,Real Valladolid vs Valencia,Moneyline,Draw,225,$0,-6.1485
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -2.75,200,$0,-6.1602
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis 0.25,-160,$0,-6.1634
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal 0.0,-300,$0,-6.1764
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna 0.0,128,$0,-6.2157
+La Liga,Cádiz vs Mallorca,Point Spreads,Cádiz 0.0,-110,$0,-6.3833
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna -0.5,220,$0,-6.3999
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -0.75,-130,$0,-6.4458
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 1.25,-140,$0,-6.4695
+La Liga,Mallorca vs Celta de Vigo,Point Spreads,Celta de Vigo 0.0,-112,$0,-6.4996
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 0.5,105,$0,-6.5209
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 2.0,-365,$0,-6.6263
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz -0.5,175,$0,-6.6336
+La Liga,Almería vs Espanyol,Totals,Under 2.25,-102,$0,-6.6367
+La Liga,Espanyol vs Real Betis,Moneyline,Real Betis,170,$0,-6.6406
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol -0.5,170,$0,-6.6509
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería -0.75,205,$0,-6.6576
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 1.75,-340,$0,-6.6721
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo -0.25,134,$0,-6.6871
+La Liga,Sevilla vs Elche,Moneyline,Sevilla,-195,$0,-6.6923
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe -0.5,205,$0,-6.7239
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca -0.75,255,$0,-6.7331
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -1.25,-240,$0,-6.7621
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 1.5,140,$0,-6.7626
+La Liga,Mallorca vs Celta de Vigo,Moneyline,Celta de Vigo,180,$0,-6.7814
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -1.25,114,$0,-6.7994
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol 0.75,-290,$0,-6.8123
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -1.25,134,$0,-6.8213
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 1.75,-275,$0,-6.8296
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -1.5,111,$0,-6.8661
+La Liga,Villarreal vs Rayo Vallecano,Point Spreads,Rayo Vallecano 0.75,-122,$0,-6.8741
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal 0.25,-365,$0,-6.8822
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz -0.25,132,$0,-6.8999
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca 0.5,-220,$0,-6.9156
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna -0.25,173,$0,-6.9253
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe 0.5,-188,$0,-6.9492
+La Liga,Espanyol vs Real Betis,Totals,Over 2.25,-110,$0,-6.9527
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol 0.5,-185,$0,-6.9764
+La Liga,Cádiz vs Mallorca,Moneyline,Cádiz,175,$0,-7.0704
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo -0.5,178,$0,-7.1171
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 0.5,110,$0,-7.1414
+La Liga,Real Valladolid vs Valencia,Totals,Under 2.25,-105,$0,-7.149
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -0.5,-255,$0,-7.155
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo 0.25,-165,$0,-7.1895
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe 0.75,-260,$0,-7.2354
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla -1.75,275,$0,-7.244
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 0.25,145,$0,-7.2655
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal -1.75,285,$0,-7.2741
+La Liga,Girona vs FC Barcelona,Totals,Under 2.75,-110,$0,-7.2752
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -0.25,-285,$0,-7.3521
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca -1.0,410,$0,-7.3623
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid 0.25,-215,$0,-7.3939
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Sevilla 0.25,-430,$0,-7.4272
+La Liga,Atlético Madrid vs Real Valladolid,Point Spreads,Atlético Madrid -1.25,-118,$0,-7.4581
+La Liga,Getafe vs Real Betis,Moneyline,Getafe,205,$0,-7.4662
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe -0.25,155,$0,-7.4829
+La Liga,Sevilla vs Cádiz,Point Spreads,Cádiz 0.75,-112,$0,-7.4995
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis -0.5,167,$0,-7.5903
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 1.5,-175,$0,-7.5924
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid -0.5,215,$0,-7.6038
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca 0.5,-217,$0,-7.626
+La Liga,Valencia vs Almería,Alternate Spreads,Almería 0.0,300,$0,-7.6444
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis -0.75,210,$0,-7.6584
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal 0.0,-290,$0,-7.7646
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 0.5,147,$0,-7.8453
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis 0.5,-212,$0,-7.8701
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz -0.75,245,$0,-7.8859
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 0.25,152,$0,-7.9093
+La Liga,Elche vs Osasuna,Point Spreads,Elche 0.25,-105,$0,-7.9203
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz 0.25,-162,$0,-7.9214
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 0.5,205,$0,-7.9373
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna 0.5,-160,$0,-7.9498
+La Liga,Sevilla vs Cádiz,Totals,Over 2.25,-118,$0,-7.987
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 1.25,193,$0,-7.9962
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol 0.0,113,$0,-8.0018
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -1.5,163,$0,-8.0249
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid -1.0,275,$0,-8.051
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 0.5,114,$0,-8.0792
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 1.0,-157,$0,-8.1235
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca 0.75,-305,$0,-8.134
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -2.5,145,$0,-8.181
+La Liga,Real Valladolid vs Valencia,Moneyline,Real Valladolid,215,$0,-8.2017
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Real Valladolid 0.25,305,$0,-8.2194
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -1.25,163,$0,-8.2558
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -1.75,145,$0,-8.2792
+La Liga,Valencia vs Almería,Moneyline,Valencia,-165,$0,-8.298
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid 0.0,125,$0,-8.2994
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 1.25,-202,$0,-8.3022
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol -0.75,235,$0,-8.308
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -1.5,143,$0,-8.3547
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid -0.25,169,$0,-8.3726
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -0.25,-230,$0,-8.4857
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia 0.5,-270,$0,-8.5289
+La Liga,Elche vs Osasuna,Alternate Spreads,Osasuna 0.75,-460,$0,-8.5495
+La Liga,Real Valladolid vs Valencia,Point Spreads,Real Valladolid 0.25,-120,$0,-8.5509
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -1.0,-168,$0,-8.5638
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis 0.5,-255,$0,-8.5672
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol 0.75,-255,$0,-8.6444
+La Liga,Villarreal vs Rayo Vallecano,Moneyline,Rayo Vallecano,340,$0,-8.7499
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 0.0,230,$0,-8.8145
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia -1.75,220,$0,-8.8388
+La Liga,Villarreal vs Rayo Vallecano,Totals,Under 2.5,-115,$0,-8.8966
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -0.75,-215,$0,-8.9073
+La Liga,FC Barcelona vs Getafe,Moneyline,Draw,625,$0,-8.9092
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 0.25,163,$0,-8.9747
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -1.75,193,$0,-8.9876
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna 0.75,-220,$0,-8.9992
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería -1.0,310,$0,-9.0335
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna -0.75,305,$0,-9.0574
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche 0.5,-143,$0,-9.1388
+La Liga,Valencia vs Almería,Alternate Spreads,Almería -0.25,350,$0,-9.1477
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid -1.25,320,$0,-9.3308
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 1.0,-175,$0,-9.3704
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 0.25,225,$0,-9.3781
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid -0.75,295,$0,-9.425
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 2.75,-250,$0,-9.4798
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis -1.0,340,$0,-9.4817
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis 0.75,-300,$0,-9.483
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis -0.75,230,$0,-9.6204
+La Liga,Sevilla vs Elche,Moneyline,Elche,525,$0,-9.6657
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid 0.5,-275,$0,-9.6877
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona 0.0,240,$0,-9.7501
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo -0.75,250,$0,-9.7647
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis 0.75,-365,$0,-9.796
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 1.25,-220,$0,-9.8163
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad -0.5,130,$0,-9.8173
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -1.5,195,$0,-9.8253
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -3.0,280,$0,-9.8585
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 0.5,155,$0,-9.8632
+La Liga,Rayo Vallecano vs Real Sociedad,Moneyline,Real Sociedad,130,$0,-9.9048
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Villarreal 0.25,-360,$0,-9.9426
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -2.0,210,$0,-10.0676
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 1.75,-235,$0,-10.1071
+La Liga,Rayo Vallecano vs Real Sociedad,Point Spreads,Real Sociedad -0.25,-105,$0,-10.1244
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo 0.5,-225,$0,-10.1334
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca -1.0,435,$0,-10.1708
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol 1.0,-500,$0,-10.2175
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe -0.75,280,$0,-10.2743
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 3.0,-365,$0,-10.3048
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo 0.75,-320,$0,-10.344
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano -0.25,275,$0,-10.3728
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol -0.25,160,$0,-10.3962
+La Liga,Girona vs FC Barcelona,Moneyline,FC Barcelona,-190,$0,-10.4119
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -2.25,250,$0,-10.4397
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,Getafe 1.0,305,$0,-10.4548
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol -0.5,210,$0,-10.4917
+La Liga,Almería vs Espanyol,Alternate Spreads,Almería -1.25,350,$0,-10.5096
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona -0.25,-265,$0,-10.5168
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 1.5,-265,$0,-10.5168
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche -0.5,245,$0,-10.6047
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche 0.75,-195,$0,-10.7046
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche 0.0,145,$0,-10.7859
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid 0.5,-162,$0,-10.9853
+La Liga,Elche vs Osasuna,Moneyline,Elche,245,$0,-11.1557
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 1.5,-255,$0,-11.2536
+La Liga,Almería vs Espanyol,Moneyline,Espanyol,210,$0,-11.2848
+La Liga,Sevilla vs Elche,Alternate Spreads,Elche 0.0,380,$0,-11.3111
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche -0.25,193,$0,-11.4743
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz 0.5,-220,$0,-11.4921
+La Liga,Villarreal vs Girona,Alternate Spreads,Villarreal -1.75,265,$0,-11.5107
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz -1.0,400,$0,-11.6651
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Espanyol -1.0,380,$0,-11.69
+La Liga,Villarreal vs Girona,Moneyline,Girona,340,$0,-11.8486
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Valencia 0.75,-390,$0,-12.3589
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz 0.75,-310,$0,-12.3988
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad 0.0,-157,$0,-12.4685
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid 0.75,-220,$0,-12.6201
+La Liga,Villarreal vs Girona,Alternate Spreads,Girona -0.25,280,$0,-12.6554
+La Liga,FC Barcelona vs Getafe,Alternate Spreads,FC Barcelona -1.0,-410,$0,-12.7606
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna 1.0,-360,$0,-12.7908
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla -2.0,280,$0,-12.8646
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche 1.0,-305,$0,-13.104
+La Liga,Villarreal vs Rayo Vallecano,Alternate Spreads,Rayo Vallecano 1.75,-370,$0,-13.1979
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Mallorca 1.0,-600,$0,-13.2615
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad -0.75,173,$0,-13.4727
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol -0.75,285,$0,-13.5484
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad 0.25,-215,$0,-13.7609
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 1.75,-360,$0,-13.7806
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz 0.0,265,$0,-13.8699
+La Liga,FC Barcelona vs Getafe,Moneyline,Getafe,1500,$0,-14.0517
+La Liga,Sevilla vs Cádiz,Moneyline,Cádiz,390,$0,-14.1141
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol 1.0,-415,$0,-14.2628
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Osasuna 1.25,-430,$0,-14.4159
+La Liga,Atlético Madrid vs Real Valladolid,Moneyline,Atlético Madrid,-275,$0,-14.5135
+La Liga,Osasuna vs Atlético Madrid,Alternate Spreads,Atlético Madrid 0.75,-410,$0,-14.5203
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis -1.0,365,$0,-14.5814
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche -0.75,340,$0,-14.7111
+La Liga,Sevilla vs Cádiz,Alternate Spreads,Cádiz -0.25,320,$0,-14.869
+La Liga,Espanyol vs Real Betis,Alternate Spreads,Real Betis 1.0,-525,$0,-14.987
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe 1.0,-460,$0,-15.2051
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad 0.5,-275,$0,-15.3153
+La Liga,Getafe vs Real Betis,Alternate Spreads,Getafe -1.0,460,$0,-15.3191
+La Liga,Almería vs Espanyol,Alternate Spreads,Espanyol 1.25,-480,$0,-15.3431
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia 0.0,-400,$0,-15.4445
+La Liga,Girona vs FC Barcelona,Alternate Spreads,Girona 2.0,-360,$0,-15.4729
+La Liga,Sevilla vs Elche,Alternate Spreads,Sevilla 0.0,-525,$0,-15.4804
+La Liga,Atlético Madrid vs Real Valladolid,Alternate Spreads,Atlético Madrid -0.25,-410,$0,-15.5755
+La Liga,Atlético Madrid vs Real Valladolid,Moneyline,Real Valladolid,700,$0,-16.1528
+La Liga,Elche vs Osasuna,Alternate Spreads,Elche 1.25,-380,$0,-16.6452
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad -1.25,330,$0,-16.6495
+La Liga,Valencia vs Almería,Alternate Spreads,Valencia 0.25,-480,$0,-17.0985
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad -1.0,275,$0,-17.4557
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo -1.0,410,$0,-17.4809
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid 1.0,-350,$0,-18.1617
+La Liga,Girona vs FC Barcelona,Alternate Spreads,FC Barcelona 0.0,-450,$0,-18.9803
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Mallorca 1.0,-575,$0,-19.2522
+La Liga,Getafe vs Real Betis,Alternate Spreads,Real Betis 1.0,-700,$0,-20.9727
+La Liga,FC Barcelona vs Getafe,Moneyline,FC Barcelona,-575,$0,-21.0681
+La Liga,Rayo Vallecano vs Real Sociedad,Alternate Spreads,Real Sociedad 0.75,-415,$0,-21.2472
+La Liga,Real Valladolid vs Valencia,Alternate Spreads,Real Valladolid 1.25,-430,$0,-22.7394
+La Liga,Mallorca vs Celta de Vigo,Alternate Spreads,Celta de Vigo 1.0,-650,$0,-25.9287
+La Liga,Cádiz vs Mallorca,Alternate Spreads,Cádiz 1.0,-600,$0,-27.1498

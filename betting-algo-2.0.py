@@ -11,7 +11,7 @@ import threading
 
 XPATH = "xpath"
 CLASS_NAME = "class name"
-BANKROLL = 64.69
+BANKROLL = 116.25
 KELLY = 1
 
 class Parser(HTMLParser):
@@ -34,29 +34,29 @@ options.add_argument('--log-level=3')
 
 bovada_sports = [
     {"league" : "NCAAMB", "link" : 'https://www.bovada.lv/sports/basketball/college-basketball'},
-    {"league" : "NCAAF", "link" : 'https://www.bovada.lv/sports/football/college-football'},
     {"league" : "NBA", "link" : 'https://www.bovada.lv/sports/basketball/nba'},
     {"league" : "NFL", "link" : 'https://www.bovada.lv/sports/football/nfl'},
     {"league" : "NHL", "link" : 'https://www.bovada.lv/sports/hockey/nhl'},
-    {"league" : "ATP", "link" : 'https://www.bovada.lv/sports/tennis/atp/auckland'},
+    {"league" : "ATP", "link" : 'https://www.bovada.lv/sports/tennis/australian-open/men-s-singles'},
+    {"league" : "WTA", "link" : 'https://www.bovada.lv/sports/tennis/australian-open/women-s-singles'},
     {"league" : "Euroleague", "link" : 'https://www.bovada.lv/sports/basketball/euroleague'},
-    {"league" : "CBA", "link" : 'https://www.bovada.lv/sports/basketball/asia/china/cba'},
     {"league" : "EPL", "link" : 'https://www.bovada.lv/sports/soccer/europe/england/premier-league'},
+    {"league" : "La Liga", "link" : 'https://www.bovada.lv/sports/soccer/europe/spain/la-liga'},
     {"league" : "LCK", "link" : 'https://www.bovada.lv/sports/esports/league-of-legends/lck-spring'},
-    {"league" : "DPC CN D1", "link" : 'https://www.bovada.lv/sports/esports/dota-2/dota-pro-circuit-division-i/dpc-cn-division-i'}
+    {"league" : "LPL", "link" : 'https://www.bovada.lv/sports/esports/league-of-legends/lpl-spring'},
 ]
 pinnacle_sports = [
     {"league" : "NCAAMB", "link" : 'https://www.pinnacle.com/en/basketball/ncaa/matchups#period:0'},
-    {"league" : "NCAAF", "link" : 'https://www.pinnacle.com/en/football/ncaa/matchups#period:0'},
     {"league" : "NBA", "link" : 'https://www.pinnacle.com/en/basketball/nba/matchups#period:0'},
     {"league" : "NFL", "link" : 'https://www.pinnacle.com/en/football/nfl/matchups#period:0'},
     {"league" : "NHL", "link" : 'https://www.pinnacle.com/en/hockey/nhl/matchups#period:0'},
-    {"league" : "ATP", "link" : 'https://www.pinnacle.com/en/tennis/atp-auckland-qualifiers/matchups#period:0'},
+    {"league" : "ATP", "link" : 'https://www.pinnacle.com/en/tennis/atp-australian-open-r3/matchups#period:0'},
+    {"league" : "WTA", "link" : 'https://www.pinnacle.com/en/tennis/wta-australian-open-r3/matchups#period:0'},
     {"league" : "Euroleague", "link" : 'https://www.pinnacle.com/en/basketball/europe-euroleague/matchups#period:0'},
-    {"league" : "CBA", "link" : 'https://www.pinnacle.com/en/basketball/china-cba/matchups#period:0'},
     {"league" : "EPL", "link" : 'https://www.pinnacle.com/en/soccer/england-premier-league/matchups#period:0'},
+    {"league" : "La Liga", "link" : 'https://www.pinnacle.com/en/soccer/spain-la-liga/matchups#period:0'},
     {"league" : "LCK", "link" : 'https://www.pinnacle.com/en/esports/games/league-of-legends/lck/matchups#period:0'},
-    {"league" : "DPC CN D1", "link" : 'https://www.pinnacle.com/en/esports/games/dota-2/dota-pro-circuit-china-division-i/matchups#period:0'}
+    {"league" : "LPL", "link" : 'https://www.pinnacle.com/en/esports/games/league-of-legends/lpl/matchups#period:0'},
 ]
 
 def split(a, n):
@@ -67,6 +67,7 @@ def bovada_name_converter(team):
     if team[-1] == ' ':
         team = team.replace(' ', '')
     team = team.replace("L.A.", "Los Angeles")
+    team = team.replace("TexasA&M", "Texas A&M")
     return team
 
 def pinnacle_name_converter(team):
@@ -74,6 +75,10 @@ def pinnacle_name_converter(team):
         if team.index("St") + 2 == len(team):
             team = team.replace("St", "State")
     team = team.replace("UL - Lafayette", "UL Lafayette")
+
+    # atp
+    team = team.replace("Dan Evans", "Daniel Evans")
+    team = team.replace("JJ Wolf", "Jeffrey John Wolf")
 
     # euroleague
     team = team.replace("Baskonia Vitoria-Gasteiz", "Saski Baskonia")
@@ -86,11 +91,31 @@ def pinnacle_name_converter(team):
     team = team.replace("Baskonia Vitoria-Gasteiz", "Saski Baskonia")
     team = team.replace("Panathinaikos BC", "Panathinaikos")
     team = team.replace("FC Barcelona", "Barcelona")
+    team = team.replace("Kk Crvena Zvezda", "Crvena Zvezda")
+    team = team.replace("BC Olympiakos Piraeus", "Olympiakos")
+
+    # la liga
+    team = team.replace(" CF", "")
+    team = team.replace("Celta Vigo", "Celta de Vigo")
+    team = team.replace("Cadiz", "Cádiz")
+    team = team.replace("Barcelona", "FC Barcelona")
+    team = team.replace("Atletico", "Atlético")
+    team = team.replace("Almeria", "Almería")
 
     # lck
-    team = team.replace("DWG KIA", "DAMWON")
     team = team.replace("Hanwha Life", "Hanwha Life Esports")
     team = team.replace("RedForce", "Red Force")
+
+    # lpl
+    team = team.replace("WE", "We")
+    team = team.replace("Invictus", "Invictus Gaming")
+    team = team.replace("Bilibili", "BLG")
+    team = team.replace("LGD", "Lgd Gaming")
+    team = team.replace("Oh My God", "OMG")
+    team = team.replace("EDward", "Edward")
+    team = team.replace("ThunderTalk", "TT Gaming")
+    team = team.replace("LNG", "LNG Esports")
+    team = team.replace("Weibo", "Weibo Gaming")
 
     # dota
     if "Aster" in team and ".Aries" not in team:
@@ -141,6 +166,7 @@ def bovada_scraper(thread, entry):
         team1 = bovada_name_converter(team1)
         team2 = bovada_name_converter(team2)
         response = {"team1" : team1, "team2" : team2}
+        # print("bovada", response)
         all_data.clear()
 
         # get all the betting markets for this game
@@ -155,6 +181,13 @@ def bovada_scraper(thread, entry):
             except:
                 print("   Failed on retrieving innerHTML from markets[i]")
             parser.feed(html)
+            try:
+                if 'LIVE' in all_data[0] or 'LIVE' in all_data:
+                    all_data.clear()
+                    all_attrs.clear()
+                    break
+            except:
+                print("   Failed to check if game is live")
             if ('class', 'market-type suspended') in all_attrs:
                 all_data.clear()
                 all_attrs.clear()
@@ -175,13 +208,13 @@ def bovada_scraper(thread, entry):
                         bets_index = all_data.index('Bets')
                         first_list = all_data[bets_index + 1:]
                         bets_index = first_list.index('Bets')
-                        if entry['league'] == 'EPL':
+                        if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                             main_markets = first_list[bets_index + 1:bets_index + 14]
                         else:
                             main_markets = first_list[bets_index + 1:bets_index + 13]
                     else:
                         bets_index = all_data.index('Bets')
-                        if entry['league'] == 'EPL':
+                        if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                             main_markets = first_list[bets_index + 1:bets_index + 14]
                         else:
                             main_markets = all_data[bets_index + 1:bets_index + 13]
@@ -199,7 +232,7 @@ def bovada_scraper(thread, entry):
                     totals_elems = []
 
                     if 'Spread' in all_data and 'Win' in all_data and 'Total' in all_data:
-                        if entry['league'] == 'EPL':
+                        if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                             main_markets[0] = main_markets[0].split(',')
                             main_markets[2] = main_markets[2].split(',')
                             main_markets[8] = main_markets[8].split(',')
@@ -214,7 +247,7 @@ def bovada_scraper(thread, entry):
                     elif 'Win' in all_data:
                         h2h_elems = main_markets
                     
-                    if entry['league'] == 'EPL':
+                    if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                         outcomes = []
                         point = []
                         if len(spreads_elems[0]) == 2:
@@ -274,7 +307,7 @@ def bovada_scraper(thread, entry):
                     alternate_spread_flag = True
 
                     spreads = all_data[3:]
-                    if entry['league'] == 'EPL':
+                    if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                         for i in range(len(spreads)):
                             if len(spreads[i].split(',')) == 1:
                                 continue
@@ -312,7 +345,7 @@ def bovada_scraper(thread, entry):
                     alternate_totals_flag = True
 
                     totals = all_data[3:]
-                    if entry['league'] == 'EPL':
+                    if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                         for i in range(len(totals)):
                             if len(totals[i].split(',')) == 1:
                                 continue
@@ -366,10 +399,9 @@ def pinnacle_scraper(thread, entry):
     except:
         print("   Failed on retrieving HTML elements")
         pass
-    #elements = driver.find_elements(By.XPATH, '//*[@id="events-chunkmode"]/div/div/div[2]/div/div[6]/a')
     links = []
     try:
-        if entry['league'] == 'ATP':
+        if entry['league'] == 'ATP' or entry['league'] == 'WTA':
             links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None and 'games' in i]
         else:
             links = [i for i in [elem.get_attribute('href') for elem in elements] if i is not None]
@@ -417,17 +449,18 @@ def pinnacle_scraper(thread, entry):
         team1_copy = team1
         team2_copy = team2
         flipped_teams = False
-        if entry['league'] == "Euroleague" or entry['league'] == "CBA" or entry['league'] == "Weibo":
+        if entry['league'] == "Euroleague":
             flipped_teams = True
             team1 = pinnacle_name_converter(team2_copy)
             team2 = pinnacle_name_converter(team1_copy)
         else:
             team1 = pinnacle_name_converter(team1)
             team2 = pinnacle_name_converter(team2)
-        if entry['league'] == 'ATP':
+        if entry['league'] == 'ATP' or entry['league'] == 'WTA':
             team1 = team1[:-8]
             team2 = team2[:-8]
         response = {"team1" : team1, "team2" : team2}
+        # print("pinnacle", response)
         all_data.clear()
 
         markets_json_array = []
@@ -445,7 +478,8 @@ def pinnacle_scraper(thread, entry):
         for m in main_markets:
             try:
                 parser.feed(m.get_attribute('innerHTML'))
-                if 'Market Offline' in all_data and entry['league'] != 'ATP':
+                if 'Market Offline' in all_data and entry['league'] != 'ATP' and entry['league'] != 'WTA':
+                    print("market offline")
                     market_offline = True
                     break
                 if all_data[0] == 'Money Line – Game' or all_data[0] == 'Money Line – OT Included' or all_data[0] == 'Money Line – Match' or all_data[0] == 'Money Line (Sets) – Match':
@@ -462,7 +496,7 @@ def pinnacle_scraper(thread, entry):
                 print("   Failed on deep copying main markets")
                 all_data.clear()
                 pass
-        if market_offline and entry['league'] != 'ATP':
+        if market_offline and (entry['league'] != 'ATP' or entry['league'] != 'WTA'):
             all_data.clear()
             continue
 
@@ -471,7 +505,7 @@ def pinnacle_scraper(thread, entry):
         totals = {"key" : "totals"}
 
         try:
-            if entry['league'] == 'ATP':
+            if entry['league'] == 'ATP' or entry['league'] == 'WTA':
                 for i in range(3, len(spreads_elems), 4):
                     outcomes = []
                     alternate_spreads_json = {"key" : "alternate_spreads"}
@@ -495,7 +529,7 @@ def pinnacle_scraper(thread, entry):
 
         try:
             outcomes = []
-            if entry['league'] == 'EPL':
+            if entry['league'] == 'EPL' or entry['league'] == 'La Liga':
                 outcomes.append({"name" : team1, "price" : int(h2h_elems[2])})
                 outcomes.append({"name" : "Draw", "price" : int(h2h_elems[4])})
                 outcomes.append({"name" : team2, "price" : int(h2h_elems[6])})
@@ -518,7 +552,7 @@ def pinnacle_scraper(thread, entry):
             pass
 
         try:
-            if entry['league'] == 'ATP':
+            if entry['league'] == 'ATP' or entry['league'] == 'WTA':
                 for i in range(1, len(totals_elems), 4):
                     outcomes = []
                     alternate_totals_json = {"key" : "alternate_totals"}
@@ -539,7 +573,7 @@ def pinnacle_scraper(thread, entry):
             print("   Failed on adding totals ")
             pass
 
-        if entry['league'] != 'ATP':
+        if entry['league'] != 'ATP' or entry['league'] != 'WTA':
             # alternate markets
             try:
                 see_mores = driver.find_elements(By.CLASS_NAME, 'style_toggleMarketsText__2fAB8')
@@ -789,7 +823,7 @@ try:
                         'Odds' : final_market['data']['outcomes'][1]['price'],
                         'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)
-                    if final_market['league'] == "EPL":
+                    if final_market['league'] == "EPL" or final_market['league'] == "La Liga":
                         df = df.append({'League': final_market['league'],
                             'Event' : final_market['event'],
                             'Market' : "Moneyline",
@@ -852,12 +886,13 @@ try:
                         'Odds' : final_market['data']['outcomes'][1]['price'],
                         'Exp. Value' : round(final_market['data']['expected_value'][final_market['data']['outcomes'][1]['name']], 4)
                     }, ignore_index = True)            
+        df.drop_duplicates()
+        sorted_df = df.sort_values(by=['Exp. Value'], ascending=False)
+        sorted_df.to_csv('live-betting.csv', index=False)
+        print(sorted_df.head(15))
+
         bovada_games.clear()
         pinnacle_games.clear()
-    df.drop_duplicates()
-    sorted_df = df.sort_values(by=['Exp. Value'], ascending=False)
-    sorted_df.to_csv('live-betting.csv', index=False)
-    print(sorted_df.head(15))
 except OSError as e:
     print('You have live-betting.csv open idiot')
     quit()
